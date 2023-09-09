@@ -1,9 +1,7 @@
 import { BOOKS_PER_PAGE, authors, genres, books } from './data.js'
-console.log(books.length)
-// function matches(searchTerm, searchCr)
 let page = 1;
   
-// My added code
+
 const openSettings = document.querySelector('[data-header-settings]')
 const closeSettings = document.querySelector('[data-settings-cancel]')
 const settingsOverlay = document.querySelector('[data-settings-overlay]')
@@ -12,27 +10,6 @@ const openSearch = document.querySelector('[data-header-search]')
 const closeSearch = document.querySelector('[data-search-cancel]')
 const searchOverlay = document.querySelector('[data-search-overlay]')
 
-
-
-
-// if (!books && !Array.isArray(books)) throw new Error('Source required') 
-// if (!range && range.length < 2) throw new Error('Range must be an array with two numbers')
-
-// fragment = document.createDocumentFragment()
-// const extracted = books.slice(0, 36);
-
-// for ({ author, image, title, id }; extracted; i++) {
-//     const preview = createPreview({
-//         author,
-//         id,
-//         image,
-//         title
-//     })
-
-//     fragment.appendChild(preview)
-// }
-
-// My added code
 
 //Show genre list
 const genreList = document.querySelector('[data-search-genres]')
@@ -84,15 +61,13 @@ const handleSearchToggle = (event) => {
      
 }
 
-
-//itemsList.style.display = 'none';
-
-// My added code
 openSettings.addEventListener('click', handleSettingsToggle)
 closeSettings.addEventListener('click', handleSettingsToggle)
 openSearch.addEventListener('click', handleSearchToggle)
 closeSearch.addEventListener('click', handleSearchToggle)
 
+
+/* Settings overlay */
 
 const settingsTheme = document.querySelector('[data-settings-theme]')
 const saveSettings = document.querySelector('[data-settings-form]')
@@ -105,7 +80,6 @@ const handleSettingsSubmit = (event) => {
     // Get the selected theme value from the dropdown
     const selectedTheme = settingsTheme.value;
   
-    // Set the theme variables in the :root CSS
     if (selectedTheme === 'night') {
       document.documentElement.style.setProperty('--color-dark', '255, 255, 255');
       document.documentElement.style.setProperty('--color-light', '10, 10, 20');
@@ -113,7 +87,7 @@ const handleSettingsSubmit = (event) => {
       document.documentElement.style.setProperty('--color-dark', '10, 10, 20');
       document.documentElement.style.setProperty('--color-light', '255, 255, 255');
     }
-    //Close overlay after saving:
+
     settingsOverlay.style.display = 'none';
     
 }
@@ -122,12 +96,6 @@ saveSettings.addEventListener('submit', handleSettingsSubmit)
 
 
 document.querySelector('[data-list-close]')
-
-
-// data-list-close.click() { data-list-active.open === false }
-
-document.querySelector('[data-search-title]').focus();
-
 
 function updateButtonLabel() {
     openList.innerText = `Show more (${books.length - page * BOOKS_PER_PAGE > 0 ? books.length - [page * BOOKS_PER_PAGE] : 0})`
@@ -154,15 +122,12 @@ function addAllAuthorsOption() {
   authorSelect.appendChild(allAuthorsOption);
 }
 
-// Call the functions to add "All Genres" and "All Authors" options
-
-
 addAllGenresOption();
 addAllAuthorsOption();
 
 const searchForm = document.querySelector('[data-search-form]')
 const itemsList = document.querySelector('[data-list-items]')
-const dataMessage = document.querySelector('[ data-list-message]')
+const  e = document.querySelector('[ data-list-message]')
 
 const handleSearch = (event) => {
     event.preventDefault()
@@ -276,18 +241,7 @@ function displayBooks(startIndex, endIndex) {
       itemsList.appendChild(bookPreview);
     }
   }
-   
-// }
 
-/*Possibly redundant code, likely to be deleted*/
-// data-settings-overlay.submit; {
-//     preventDefault()
-//     const formData = new FormData(event.target)
-//     const result = Object.fromEntries(formData)
-//     document.documentElement.style.setProperty('--color-dark', css[result.theme].dark);
-//     document.documentElement.style.setProperty('--color-light', css[result.theme].light);
-//     data-settings-overlay.open === false
-// }
 
 const closePreview = document.querySelector('[data-list-close]')
 const previewTitle = document.querySelector('[data-list-title]')
@@ -328,9 +282,9 @@ const handlePreviewToggle = (event) => {
 }
 closePreview.addEventListener('click', () => {
     if (activeOverlay.style.display === 'block') {
-      activeOverlay.style.display = 'none'; // Close the overlay
+      activeOverlay.style.display = 'none'; 
     } else {
-      activeOverlay.style.display = 'block'; // Open the overlay
+      activeOverlay.style.display = 'block';
     }
   });
 
