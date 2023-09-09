@@ -298,12 +298,6 @@ const previewImage = document.querySelector('[data-list-image]')
 const activeOverlay = document.querySelector('[data-list-active]')
 
 const handlePreviewToggle = (event) => {
-    if (activeOverlay.style.display === 'block') {
-        activeOverlay.style.display = 'none';
-    } else {
-        activeOverlay.style.display = 'block';
-    }
-
     const pathArray = Array.from(event.path || event.composedPath())
     let active = null;
 
@@ -331,8 +325,14 @@ const handlePreviewToggle = (event) => {
     previewSubtitle.textContent = `${authors[author]} (${new Date(published).getFullYear()})`
     previewDescription.textContent = description;
 
- 
 }
+closePreview.addEventListener('click', () => {
+    if (activeOverlay.style.display === 'block') {
+      activeOverlay.style.display = 'none'; // Close the overlay
+    } else {
+      activeOverlay.style.display = 'block'; // Open the overlay
+    }
+  });
 
 itemsList.addEventListener('click', handlePreviewToggle)
 closePreview.addEventListener('click', handlePreviewToggle)
