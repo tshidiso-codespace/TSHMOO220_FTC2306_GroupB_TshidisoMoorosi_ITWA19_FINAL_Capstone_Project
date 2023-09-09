@@ -26,13 +26,14 @@
       rel="stylesheet"
     />
 
-    <script src="./scripts.js"></script>
-    <script src="./data.js"></script>
+    <script src="./scripts.js" defer type="module"></script>
+    <!--<script src="./data.js"></script>-->
   </head>
   <body>
 
     <header class="header">
       <div class="header__inner">
+        <!--Start up name & Logo-->
         <div class="header__logo">
           <svg
             class="header__shape"
@@ -63,6 +64,7 @@
           </svg>
         </div>
         <div>
+          <!--search button-->
           <button class="header__button" data-header-search>
             <svg
               class="header__icon"
@@ -74,7 +76,7 @@
               ></path>
             </svg>
           </button>
-
+          <!--settings button-->
           <button class="header__button" data-header-settings>
             <svg
               class="header__icon"
@@ -89,14 +91,14 @@
         </div>
       </div>
     </header>
-
+    
     <main class="list">
       <div class="list__items" data-list-items></div>
       <div class="list__message" data-list-message>No results found. Your filters might be too narrow.</div>
       <button class="list__button" data-list-button></button>
     </main>
 
-
+    <!--list-->
     <dialog class="overlay" data-list-active>
       <div class="overlay__preview"><img class="overlay__blur" data-list-blur src=""/><img class="overlay__image" data-list-image src=""/></div>
       <div class="overlay__content">
@@ -110,7 +112,7 @@
       </div>
     </dialog>
 
-
+    <!--search overlay-->
     <dialog class="overlay" data-search-overlay>
       <div class="overlay__content">
         <form class="overlay__form" data-search-form id="search">
@@ -137,7 +139,7 @@
         </div>
       </div>
     </dialog>
-
+    <!--settings overlay-->
     <dialog class="overlay" data-settings-overlay>
       <div class="overlay__content">
         <form class="overlay__form" data-settings-form id="settings">
