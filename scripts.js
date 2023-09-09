@@ -127,7 +127,7 @@ addAllAuthorsOption();
 
 const searchForm = document.querySelector('[data-search-form]')
 const itemsList = document.querySelector('[data-list-items]')
-const  e = document.querySelector('[ data-list-message]')
+const noMatches = document.querySelector('[ data-list-message]')
 
 const handleSearch = (event) => {
     event.preventDefault()
@@ -150,9 +150,9 @@ const handleSearch = (event) => {
     
 
     if (filteredBooks.length === 0) {
-        dataMessage.classList.add('list__message_show');
+        noMatches.style.display = 'block'
       } else {
-        dataMessage.classList.remove('list__message_show');
+        noMatches.style.display = 'none'
       }
     
       // Clear the itemsList
@@ -204,7 +204,7 @@ const handleSearch = (event) => {
 
 searchForm.addEventListener('submit', handleSearch)
 
-
+/** function to show 36 books per page and show 36 more as you click button */
 
 const handleShowList = (event) => {
     const startIndex = page * BOOKS_PER_PAGE
@@ -217,6 +217,8 @@ updateButtonLabel()
 }
 
 openList.addEventListener('click', handleShowList)
+
+/**Function to display list of books */
 
 function displayBooks(startIndex, endIndex) {
     for (let i = startIndex; i < endIndex && i < books.length; i++) {
@@ -243,6 +245,7 @@ function displayBooks(startIndex, endIndex) {
   }
 
 
+/* Book preview */
 const closePreview = document.querySelector('[data-list-close]')
 const previewTitle = document.querySelector('[data-list-title]')
 const previewSubtitle = document.querySelector('[data-list-subtitle]')
