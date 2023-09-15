@@ -72,7 +72,7 @@ closeSearch.addEventListener('click', handleSearchToggle)
 const settingsTheme = document.querySelector('[data-settings-theme]')
 const saveSettings = document.querySelector('[data-settings-form]')
 
-const openList = document.querySelector('[data-list-button]')
+
 
 const handleSettingsSubmit = (event) => {
     event.preventDefault(); // Prevent the form from submitting
@@ -95,7 +95,7 @@ const handleSettingsSubmit = (event) => {
 saveSettings.addEventListener('submit', handleSettingsSubmit)
 
 
-document.querySelector('[data-list-close]')
+const openList = document.querySelector('[data-list-button]')
 
 function updateButtonLabel() {
     openList.innerText = `Show more (${books.length - page * BOOKS_PER_PAGE > 0 ? books.length - [page * BOOKS_PER_PAGE] : 0})`
@@ -125,9 +125,11 @@ function addAllAuthorsOption() {
 addAllGenresOption();
 addAllAuthorsOption();
 
+
 const searchForm = document.querySelector('[data-search-form]')
 const itemsList = document.querySelector('[data-list-items]')
 const noMatches = document.querySelector('[ data-list-message]')
+
 
 const handleSearch = (event) => {
     event.preventDefault()
@@ -144,13 +146,9 @@ const handleSearch = (event) => {
       })
     
 
-    // if display.length < 1 
-    // data-list-message.class.add('list__message_show')
-    // else data-list-message.class.remove('list__message_show')
-    
-
     if (filteredBooks.length === 0) {
         noMatches.style.display = 'block'
+        searchOverlay.style.display = 'none';
       } else {
         noMatches.style.display = 'none'
       }
@@ -186,6 +184,7 @@ const handleSearch = (event) => {
       });
     
       itemsList.appendChild(fragment);
+      searchOverlay.style.display = 'none'
     
       openList.disabled = filteredBooks.length === 0;
 
@@ -194,10 +193,6 @@ const handleSearch = (event) => {
     
       // Scroll to the top
       window.scrollTo({ top: 0, behavior: 'smooth' });
-    
-      // You can hide the overlay if needed
-      // const searchOverlay = document.querySelector('[data-search-overlay]');
-      // searchOverlay.style.display = 'none';
 
 }
 
@@ -250,7 +245,7 @@ const closePreview = document.querySelector('[data-list-close]')
 const previewTitle = document.querySelector('[data-list-title]')
 const previewSubtitle = document.querySelector('[data-list-subtitle]')
 const previewDescription = document.querySelector('[data-list-description]')
-const previewBlur = document.querySelector('[data-list-blur]')
+//const previewBlur = document.querySelector('[data-list-blur]')
 const previewImage = document.querySelector('[data-list-image]')
 const activeOverlay = document.querySelector('[data-list-active]')
 
@@ -269,14 +264,13 @@ const handlePreviewToggle = (event) => {
           }
         } 
     
-
-    
+ 
     if (!active) return
 
     const { author, published, description, image, title } = active;
 
     activeOverlay.open = true;
-    previewBlur.src = image
+    //previewBlur.src = image
     previewImage.src = image;
     previewTitle.textContent = title
     previewSubtitle.textContent = `${authors[author]} (${new Date(published).getFullYear()})`
